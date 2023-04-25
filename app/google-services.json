@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1070195508386",
+    "firebase_url": "https://fir-chat-kotlin-b7920-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fir-chat-kotlin-b7920",
+    "storage_bucket": "fir-chat-kotlin-b7920.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070195508386:android:dd61c278cbeb3ee5b403fb",
+        "android_client_info": {
+          "package_name": "com.example.firebasechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070195508386-1omgssj634d71vd7485od03mli5b642t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebasechat",
+            "certificate_hash": "06b3596ca1156a9c9fb9c30c204fbe1a77842b56"
+          }
+        },
+        {
+          "client_id": "1070195508386-vaggim0us9ffi25ttj2t10nmjhqie5f3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIdBh17-7qaUffDkqK4me0CFwOWY9G038"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070195508386-n0pgadcq03c2s6lrffgdqgn0jokq7jab.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
