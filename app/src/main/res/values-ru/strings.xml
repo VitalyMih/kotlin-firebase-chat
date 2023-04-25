@@ -3,4 +3,6 @@
     <string name="app_name">Firebase Chat</string>
     <string name="sign_in">Авторизоваться</string>
     <string name="google_auth">Авторизуйтесь через Google</string>
+    <string name="send_message">Отправить сообщение</string>
+    <string name="enter_message">Введите сообщение</string>
 </resources>
