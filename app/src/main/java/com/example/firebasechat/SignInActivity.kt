@@ -37,6 +37,8 @@ class SignInActivity : AppCompatActivity() {
                 Log.w("My tag", "Api Exception failed", error)
             }
         }
+        // If you are already registered, then navigate to next screen
+        navigateToMainActivity()
     }
 
     private fun getGoogleSigInClient(): GoogleSignInClient {
@@ -52,7 +54,7 @@ class SignInActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                Log.d("My tag", "signInWithCredential:success")
+                navigateToMainActivity()
             } else {
                 Log.w("My tag", "signInWithCredential:failure", task.exception)
             }
@@ -62,5 +64,12 @@ class SignInActivity : AppCompatActivity() {
     fun onGoogleAuthButtonClick(view: View) {
         val signInIntent = getGoogleSigInClient()
         launcher.launch(signInIntent.signInIntent)
+    }
+
+    private fun navigateToMainActivity() {
+        if (auth.currentUser !== null) {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
     }
 }

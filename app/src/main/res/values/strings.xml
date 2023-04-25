@@ -2,4 +2,6 @@
     <string name="app_name">Firebase Chat</string>
     <string name="sign_in">Sign In</string>
     <string name="google_auth">Google Authentication</string>
+    <string name="send_message">Send message</string>
+    <string name="enter_message">Enter message</string>
 </resources>
