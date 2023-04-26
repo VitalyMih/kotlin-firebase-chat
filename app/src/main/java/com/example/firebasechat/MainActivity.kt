@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firebasechat.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var databaseRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private val adapter = MessagesAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         databaseRef = Firebase.database.getReference("messages")
         setUpAvatar()
+        initMessagesList()
         dataChangeListener()
     }
 
@@ -47,9 +50,12 @@ class MainActivity : AppCompatActivity() {
     private fun dataChangeListener() = with(binding) {
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.value.toString()
-                messagesList.append("\n")
-                messagesList.append(value)
+                val messagesList = ArrayList<Message>()
+                snapshot.children.forEach { message ->
+                    val value = message.getValue(Message::class.java)
+                    if (value !== null) { messagesList.add(value) }
+                }
+                adapter.submitList(messagesList)
             }
 
             override fun onCancelled(error: DatabaseError) {}
@@ -57,7 +63,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onSendMessageClick(view: View) = with(binding) {
-        databaseRef.setValue(messageText.text.toString())
+        val message = Message(auth.currentUser?.displayName, messageText.text.toString())
+        databaseRef.child(databaseRef.push().key ?: "01").setValue(message)
     }
 
     private fun setUpAvatar() {
@@ -71,5 +78,10 @@ class MainActivity : AppCompatActivity() {
                 actionBar?.title = auth.currentUser?.displayName
             }
         }.start()
+    }
+
+    private fun initMessagesList() = with(binding) {
+        messagesList.layoutManager = LinearLayoutManager(this@MainActivity)
+        messagesList.adapter = adapter
     }
 }
