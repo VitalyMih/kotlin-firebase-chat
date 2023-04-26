@@ -5,4 +5,5 @@
     <string name="google_auth">Авторизуйтесь через Google</string>
     <string name="send_message">Отправить сообщение</string>
     <string name="enter_message">Введите сообщение</string>
+    <string name="sign_out">Выйти из аккаунта</string>
 </resources>
